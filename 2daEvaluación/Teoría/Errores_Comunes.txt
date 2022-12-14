@@ -1,0 +1,6 @@
+Al abrir un archivo en el servidor hay que hacerlo en el localhost (127.0.0.0) y no desde el fichero porque si no 
+se abre con el protocolo file y no con el protocolo htdocs, también poner espacios en el archivo, poner la extensión mal.
+
+En PHP poner el simbolo '$' antes de llamar a una función y no en una variable.
+No poner el salto de línea en la web ("<br/>") o en el del programador ("\n").
+No indexar bien el código olvidando poner ; o usando . en vez de , y viceversa.

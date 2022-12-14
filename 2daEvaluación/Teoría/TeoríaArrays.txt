@@ -1,0 +1,22 @@
+						Arrays en PHP
+
+En PHP, un array es un tipo de datos que asocia una clave con un valor(Mapa en JAVA).
+
+Sintaxis para definir un array
+
+$a=array(
+1=> "hola",5=>"adios","que"=>"tal");
+
+$b=array(
+1=> "hola",5=>"adios","que"=>5.8,"si"=>True);
+
+Visualizar un array
+	-var_dump: forma rápida, pero no tenemos control sobre como se visualiza el contenido >> se utiliza sobre 
+		todo para depurar código.
+	-con un bucle foreach
+Operadores de comparación en PHP
+Significado y diferencia de
+empty($var);
+isset($var);
+isnull($var);
+=== o !==;

@@ -1,0 +1,166 @@
+PHP NO es un lenguaje fuertemente tipado
+Las variables se declaran por su nombre, SIN TIPO
+
+Tipos de Datos
+
+integer
+$i=3;
+
+coma flotante
+$f=7.85;
+
+string
+$s="hola";
+
+boolean
+$b=true;//esta es una palabra reservada del lenguaje
+$b=false;
+
+El método gettype me dice el tipo de una variable en un momento dado
+echo gettype($b),"<br/>",gettype($s);
+
+Algunos datos importantes que podemos conocer de PHP
+echo PHP_INT_SIZE."<br/>";
+echo PHP_INT_MIN."<br/>";
+echo PHP_INT_MAX."<br/>";
+
+tipo double
+$largo=92233720368547758070;
+echo "$largo <br/>",gettype($largo)."<br/>";
+
+Si una variable se va a utilizar y no se le ha asignado un valor, 
+genera un error de tipo E_NOTICE, PERO no interrumpe la 
+ejecución del script.
+
+El tipo asignado a una variable no inicailizada es NULL
+
+Si esa variable se ha utilizado en una expresión de cualquier tipo,
+la expresión se calcula tomando el valor por defecto del tipo de 
+dato que necesite.
+
+Ejemplo: no_init.php
+
+Constantes
+
+Las constantes se declaran mediante la función define("NOMBRE",valor)
+
+Habitualmente, los nombres de constantes se ponen en mayúsculas.
+
+Tipos de datos exalares
+
+Números:
+	· integer
+	· double
+	· float
+
+
+Cadenas de texto 
+
+Tienen el tipo string.
+Se pueden delimitar con comillas simples o dobles, PERO si se utilizan 
+comillas dobles (también llamadas comillas mágicas), las variables
+que haya en el interior del string se sustituirán por su valor.
+
+El operador "." concatena variables de tipo string.
+
+BOOLEAN
+
+Una variable puede tener el valor True o False.
+
+Los demás tipos de datos también pueden convertirse a su valor 
+booleano:
+	·Un número será FALSE si tiene valor 0 y TRUE en 
+	cualquier otro caso.
+	·Un string sera FALSE si es una cadewna vacía o la 
+	cadena "0".
+	·Cualquier variable no inicializada o nula será FALSE.
+	·Un array es FALSE si no tiene elementos.
+
+OTROS TIPOS DE DATOS
+
+	·array: los veremos con detalle
+	·object: lo mismo
+	·callable: tipo para representar funciones
+	·null
+	·resource: tipo utilizado para recursos externos
+	como una conexion a BD,etc.
+
+Ámbito de variables
+
+El ámbito de una variable es la parte del código donde está visible;
+es decir, donde puede ser invocada.
+
+En principio, el ámbitio de una variable PHP es el bloque donde
+está definida. Este bloque puede estar marcado pora las etiquetas
+de script <?php ...?>, por unas llaves de un bloque de código, etc.
+
+Las variables internas a una función no se verán fuera de la función,
+por ejemplo.
+
+Se puede definir variables globales de dos formas:
+	·Con el modificador global;
+	·Con el array predefinido $_GLOBALS.
+
+Además, PHP tiene muchas variables predefinidas propias:
+$_GET,$_POST,$_REQUEST,...
+
+Ejemplo: tipos_global.php
+
+ESTRUCTURAS DE CONTROL
+
+CONDICIONALES
+
+if (condición){..};
+[elseif(condición1)]
+[elseif(condición2)]
+...
+[else{...}]
+
+switch($var){
+	case valor1:...break;
+	case valor2:...break;
+...
+	default:...
+}
+
+DE REPETICIÓN
+
+Tenemos diferentes tipos de bucle
+
+for($i=0;i<8;$i=$i+1){...}
+
+while(condición){...}
+
+do{
+
+}while(condición)
+
+Para iterar arrays tenemos también el bucle foreach.
+
+OTRAS ESTRUCTURAS
+
+include y require
+
+Permiten incluir en archivo el código de otro archivo. Se
+diferencian en el tratamiento de errores: si el archivo 
+solicitado no existe, con include se produce un eror E_NOTICE(warning)
+mientras que con require se produce un E_FATAL, que termina la 
+ejecución del script.
+
+Diferencias entre distintos valores
+
+$cosas = array('',0,array(),"\0",false, true,null);
+
+vacíos NO nulos:'';array(),0.false
+NULOS:null
+NO vacíos (y no nulos):"\0",true
+===null
+
+recordar que el triple = comprueba priumero el tipo y despues el valor.
+===0
+!==0
+comprueba eltipo primero y luego el valor,impide que 0 se interprete como
+false porque obliga a interpretarlo como int.
+
+DIRECTIVAS include y require
+

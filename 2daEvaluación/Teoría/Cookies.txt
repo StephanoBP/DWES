@@ -1,0 +1,8 @@
+Para solucionar este problema, PHP implementa dos mecanismos de memoria o 
+almacenamiento de valores entre PETICIONES http:
+1.sesiones: valores de variables almacenadas en el servidor (PERO session_id se guarda en el navegador
+en forma de cookie)
+2.cookies: valores de variables almacenadas en el Cliente
+
+Funciones de fecha
+time() devuelve el momento actual en segundos;

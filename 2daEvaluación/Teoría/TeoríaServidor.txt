@@ -1,0 +1,27 @@
+							Envío de datos al servidor
+Formularios:Los formularios son de HTML,no de PHP.Utilizan el protocolo HTTP para enviar datos al servidor, y SOLO pueden
+	    utilizar los metodos GET o POST, que se especifican en el atributo method de la etiqueta <form>.
+
+Todo formulario tiene un botón submit.
+
+El atributo action de la etiqueta <form> dice qué script se ejecutará al pulsar el botón form. 
+<form action="login.php" method="POST">
+
+¿Qué ocurre en el servidor?
+Al pulsar el botón submit, al servidor se envía un array asociativo con el nombre y el valor de cada elemento del 
+formulario.
+
+$_GET  
+$_POST
+$_REQUEST para los dos métodos
+
+
+ACCESO a DAtos con PDO 
+
+Hasta ahora solo hemos trabajado con las capas de control y presentación teniendo en cuenta nuestro
+objetivo de crear aplicaciones EN CAPAS con el patron MVC.
+1- VISTA: capa de presentación WEB, en este punto del curso no hemos separado totalmente la vista del control pero ya hemos 
+ENCAPSULADO las funcionalidades de la vista en funciones, aunque todavía están dentro
+de la página de control
+2. Control: navegación y decisiones (perfiles, niveles de seguridad, etc...) 
+implementado con COOKIES y SESIONES
