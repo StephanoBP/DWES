@@ -1,0 +1,9 @@
+1.Programar un script PHP que reciba un número y saque cada cifra 
+en una linea diferente.
+	a) para empezar, poner un número en una variable dentro
+	  del script.
+	b) después, programar un formulario que pida un número
+	  cualquiera, y lo pase al script por POST.
+
+Si el número es negativo o si lo que se envía no es un número,
+mostrará el correspondiente mensaje de error.
