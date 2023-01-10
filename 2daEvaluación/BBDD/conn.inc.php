@@ -36,7 +36,7 @@ class Conn{
 				
 	}catch (PDOException $e){
 		
-		die("<br/>ERROR: ".$e.getMessage());
+		die("<br/>ERROR: ".$e->getMessage());
 	}
 
 	return Conn::$conn;	

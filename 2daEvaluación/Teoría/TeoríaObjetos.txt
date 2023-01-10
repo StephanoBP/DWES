@@ -1,0 +1,14 @@
+Programación Orientada a Objetos (POO)
+Fundamentos de la POO:
+No se XD
+
+Ventajas de la POO:
+1. Mantenibilidad de las aplicaciones
+
+2. Código simple
+
+3. Reutilización de código(Mínima redundancia): el código se encuentra en un solo lugar y no 
+se repite, así los errores son más fáciles de detectar y es más fácil de cambiar
+
+3. Modularidad: se puede cambiar fácilmente un objeto por otro con la misma INTERFAZ, aunque
+su implementación sea completamente distinta.
