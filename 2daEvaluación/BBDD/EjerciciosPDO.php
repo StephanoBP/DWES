@@ -12,6 +12,7 @@ include_once("vista.inc.php");
         <h3> Ejemplo PDO sencillo</h3>
         <?php
         $v = new Vista();
+        
         try{
             $cadenaDSN="mysql:host=".HOST.";dbname=gesventa;charset=".CHRST;
             $con = new PDO(CONN2,USER,PWD);

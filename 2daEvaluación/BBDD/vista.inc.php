@@ -1,9 +1,11 @@
 <?php
 define("BR", "<br/>\n");
 class Vista{
-    public function Vista(){}
+    public function Vista(){
+    }
 
-    function tabla($t){
+    function tabla($t)
+    {
         //var_dump($t);
         echo ("<table border=1>" . BR);
         //$s.="<tr><th>Cod.</th><tr><th>Nombre</th><tr><th>Clave</th><tr><th>Rol</th></tr>";
@@ -41,5 +43,11 @@ class Vista{
         }
         $s . "</table>\n";
         echo $s;
+    }
+    function hola(){
+        return "HOLA";
+    }
+    function error(){
+        return "Error";
     }
 }

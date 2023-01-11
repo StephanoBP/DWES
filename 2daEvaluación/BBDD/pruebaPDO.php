@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <?php
-include_once("empresa.inc.php");
-define("BR", "<br/>\n");
-function tabla($t){
-    $s = "<table border=1>" . BR;
-    $s .= "<tr>";
-    foreach ($t[0] as $k => $v) $s.="<th>$v</th>";
-    $s.="</tr>";
-    foreach($t as $k=>$f){
-        $s.="<tr>";
-        foreach($f as $v) $s.="<td>$v</td>";
+    include_once("empresa.inc.php");
+    define("BR", "<br/>\n");
+    function tabla($t){
+        $s = "<table border=1>" . BR;
+        $s .= "<tr>";
+        foreach ($t[0] as $k => $v) $s.="<th>$v</th>";
         $s.="</tr>";
+        foreach($t as $k=>$f){
+            $s.="<tr>";
+            foreach($f as $v) $s.="<td>$v</td>";
+            $s.="</tr>";
+        }
+        
+        $s.="</table>";
+        echo $s;
     }
-    
-    $s.="</table>";
-    echo $s;
-}
 
 ?>
 <html lang="es">

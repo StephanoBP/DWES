@@ -1,6 +1,6 @@
 <?php
 //conn.php
-require_once 'emple.inc.php';
+require_once 'empresa.inc.php';
 
 class Conn{
 	
@@ -45,8 +45,9 @@ class Conn{
 function close(){
 	Conn::$conn= null;
 }	
-	
+
 }//class
+function ejemplo(){	
 //Ejemplo básico para ver si conecta y ejecuta SQL
 try{
 	
@@ -64,6 +65,7 @@ try{
 	
 }catch(PDOException $e){
 	echo "<h1>Error</h1>";
+}
 }
 
 

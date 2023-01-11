@@ -1,0 +1,44 @@
+Ejercicio 6
+Crear un formulario de login a una aplicación con dos campos: usuario y
+contraseña. Una vez introducidos los datos se comprobará en la tabla usuarios si
+son correctos. En caso afirmativo, redirigir a una página que presente cuatro
+opciones: alta, baja, modificación y consulta de productos. En caso contrario,
+mostrar un mensaje de usuario/contraseña incorrectos y mantenerse en el login.
+
+EXTRA
+
+1º parte
+Al parecer el formulario de login. Una vez introducidos los datos:
+    1. se validará en la BD si son correctis.
+        1.1 En caso afirmativo,
+            1.1.a redirigir a una página que presente cuatro 
+            opciones como BOTONES de form: alta, baja, modificación y consulta de productos.
+            1.1.b guardar en la sesión el identificador de usuario
+        1.2 En caso contrario, (datos incorrectos)
+            1.2.a mostrar un mensaje de error y 
+            1.2.b mantenerse en la página de login. 
+
+    2. Tener en cuenta cuestiones de seguridad de navegación
+        2.1 Cada vez que se vuelva a la página de login, se destruirá la sesioón
+        2.2 lo que se nos ocurra opcional
+
+        Se deben implementar todas estas funcionalidades siguiendo el patrón MVC:clases para la vista 
+        controlador y modelo
+        Para la gestión del acceso a datos, crearemos una clase DAO que contenga los métodos CRUD:
+        getALL(): devuelve una lista con todos los productos
+        get(int cod): dado un código de producto, devuelve ese producto
+        save(Producto): dado los datos de un nuevo producto, lo inserta en la BD
+        update(Producto):
+        delete(Producto):
+2ª parte TRADUCCIÓN
+En la página de inicio aparecerá
+    1.Una cabecera de bienvenida
+    2.Una lista de opciones desplegable, que permita elegir uno entre los idiomas disponibles.Esta lista 
+    estará  siempre visible, para poder cambiar el idioma en cualquier momento de la navegación.
+        2.1 Los idiomas estarán definidos en un array, y la lista de idiomas se generará automáticamente,
+        incluyendo los comprendidos en el array. 
+        2.2  El array estará en un archivo separado, llaado const.inc.php, que podrá contener otros arrays,
+        constantes, etc. En concreto, en este archivo se almacenarán las estructuras de datos que permitan 
+        la traducción automática de la página.
+        2.3 Al seleccionar el idioma, se mostrarán los elementos del formulario de login en el idioma 
+        adecuado. Después, la navegación continuará normalmente.
