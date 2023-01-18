@@ -1,7 +1,11 @@
 <?php
 define("BR", "<br/>\n");
+require_once("const.inc.php");
 class Vista{
-    public function Vista(){
+    protected $lang;
+
+    public function __construct($lang = "Español"){
+        $this->lang=$lang;
     }
 
     function tabla($t)
@@ -44,8 +48,8 @@ class Vista{
         $s . "</table>\n";
         echo $s;
     }
-    function hola(){
-        return "HOLA";
+    function hola($ses){
+        echo BR."<h1>".LANGS[$this->lang]['bienvenida'].",".$ses['user']."</h1>";
     }
     function error(){
         return "Error";

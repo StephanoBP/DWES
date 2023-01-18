@@ -10,20 +10,13 @@ class Modelo{
             $mssg = "Es obligatorio introducir datos";
         else {
             try {
-
                 $c = new Conn();
                 $bd = $c->getConn();
-
                 //consultamos los usuarios de mysql
-
                 $stmt = $bd->prepare("SELECT * FROM usuarios Where usr=:usr AND pass=:pass");
-                $stmt->execute([
-                    ':usr' => $datos['user'],
-                    ':pass' => md5($datos['pass'])
-                ]);
+                $stmt->execute([':usr' => $datos['user'], ':pass' => md5($datos['pass'])]);
 
-                if ($stmt->rowCount() != 1)
-                    $mssg = "ERROR";
+                if ($stmt->rowCount() != 1)$mssg = "ERROR";
 
             } catch (PDOException $e) {
                 echo "<h1>USUARIO Y CONTRASEÑA INCORRECTOS<br></h1>";

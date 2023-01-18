@@ -9,7 +9,7 @@ EXTRA
 
 1º parte
 Al parecer el formulario de login. Una vez introducidos los datos:
-    1. se validará en la BD si son correctis.
+    1. se validará en la BD si son correctos.
         1.1 En caso afirmativo,
             1.1.a redirigir a una página que presente cuatro 
             opciones como BOTONES de form: alta, baja, modificación y consulta de productos.
@@ -19,11 +19,11 @@ Al parecer el formulario de login. Una vez introducidos los datos:
             1.2.b mantenerse en la página de login. 
 
     2. Tener en cuenta cuestiones de seguridad de navegación
-        2.1 Cada vez que se vuelva a la página de login, se destruirá la sesioón
-        2.2 lo que se nos ocurra opcional
+        2.1 Cada vez que se vuelva a la página de login, se destruirá la sesión
+        2.2 lo que se nos ocurra OPCIONAL
 
-        Se deben implementar todas estas funcionalidades siguiendo el patrón MVC:clases para la vista 
-        controlador y modelo
+        Se deben implementar todas estas funcionalidades siguiendo el patrón MVC:clases para la vista, 
+        controlador y modelo.
         Para la gestión del acceso a datos, crearemos una clase DAO que contenga los métodos CRUD:
         getALL(): devuelve una lista con todos los productos
         get(int cod): dado un código de producto, devuelve ese producto

@@ -1,0 +1,133 @@
+23 / 11 / 2022
+Cookies y sesiones:
+HTTP es un protocolo sin estado, que no guarda información de las conexiones y por tanto no puede relacionar diferentes conexiones.
+Para solucionar este problema, PHP implementa dos mecanismos de memoria o almacenamiento de valores entre peticiones:
+    1. Sesiones: valores de variables almacenadas en el SERVIDOR (PERO session_id)
+    2. Cookies: valores de variables almacenadas en el CLIENTE
+En el navegador podemos consultar las cookies, PERO NO las sesiones, puesto que están en el servidor.
+Operadores de comparación en PHP:
+Significado y diferencia de 
+Empty($var): Comprueba si una variable esta vacia.
+Isset($var): Determina si una función esta definida y no es null.
+Isnull($var): Comprueba si una variable es null. PERO, ¿Cuándo esta vacia una variable? Depende del tipo: variables.php
+$cosas = $cosas = array('',0,array(),"\0", false, true, null);
+Vacios NO nulos: “array(), 0, false”
+NULOS: null
+NO vacios (y no nulos): “\0”, true
+===null: el triple = comprueba primero el tipo y después del valor.
+=== o !===
+
+Funciones de usuario en PHP:
+La sintaxis básica para definir una función en PHP es:
+Function nombre ($arg1+[$argi]*){
+//sentencias de programación
+Return $salida;
+}
+(posibilidades: 0 argumentos, 1 argumento, o lista con argumentos separados por comas(return es OPCIONAL))
+Posibilidad de que los argumentos tengan VALORES por DEFECTO
+
+Function enlace($url=’www.madrid.org’){
+	Echo “<a href=’$url’>Pulsa</a>
+}
+
+Enlace(“micasa.org”); //
+Enlace(); //utiliza el valor por defecto
+
+Peticiones HTML:
+Formas que conocemos de hacer una petición GET (cargar una página web):
+    • Elemento <a href=’…’> de HTML: hace una petición GET de la página indicada por la propiedad href.
+    • Botón SUBMIT de un FORM: hace una petición GET/POST de la página indicada en action AND envía un array con los valores del form. ($_REQUEST, $_GET O $_POST)
+    • Cabecera HTTP: header(‘Location: ejemplo.com’) hace una petición GET de la página indicada SIN acción del usuario.
+Cuando abrimos una página sabiendo que el evento desencadenante es un click sobre un SUBMIT de un FORM, podremos comprobar $_POST, $_GET o $_REQUEST. Estos arrays tendrán, al menos, el elemento del submit.
+Sin embargo, cuando abrimos la página desde un elemento <a> o desde una redirección tipo header (Location:’…’), NO TENEMOS estos arrays.
+Por tanto, si queremos mantener el estado de la aplicación, es decir, transmitir o recordar los valores de ciertas variables, DEBEMOS utilizar $_SESSION.
+
+30/11/2022… Falta
+
+Nueva versión del ejercicio anterior, donde se prueba:
+    • Traducir la página automáticamente al seleccionar el idioma
+    • Poner un color de fondo a la página, al seleccionar uno
+Cookies:
+Ej1_cookies.php
+Funciones de fecha:
+Time(): devuelve el momento actual en segundos.
+Date(“d/m/Y h:i:s”): devuelve el momento actual en forma de String con el formato especificado en el argumento.
+
+14/12/2022:
+La librería PDO tiene una CLASE llamada también PDO.
+Para obtener una conexión, INSTANCIAR
+La conexión a la BD la realizamos con el constructor de la clase PDO $con = new PDO($cadena, $usuario, $password)
+Si no se puede realizar la conexión por cualquier motivo, se produce una excepción, que debemos tratar, envolviendo la conexión en bloque try{…}catch{}.
+Si no tratamos las excepciones PDO, aparecerá un mensaje de error incluyendo todos los datos, también el usuario
+Al operar sobre la BD, tenemos dos opciones
+    1. Consultas directas (método query): se ejecutan directamente sobre la BD, sin más comprobación.
+    2. Consultas preparadas (método prepare):
+QUERY():
+Podemos introducir una query y ejecutarla con la siguiente sintaxis:
+$stmt=$con->("SELECT * FROM empleados");
+$stmt->execute();
+
+Para EXTRAER el resultado de una query es necesario hacer FETCH.
+16/12/2022:
+Programación Orientada a Objetos:
+Objetivos de la POO:
+La programación orientada a objetos (POO) es un paradigma de programación que utiliza la abstracción para crear modelos de objetos creados en el mundo real, utilizando paradigmas previamente establecidos, incluyendo modularidad, polimorfismo y encapsulamiento.
+Los objetos pueden contener información y código relacionado, lo cual representa información acerca de lo que se está tratando de modelar, así como la funcionalidad o comportamiento que deseamos que tenga. Los datos de un Objeto (funciones) pueden almacenarse ordenadamente (encapsulación) dentro del paquete de un objeto (espacio de nombres),
+
+Los objetos CONTIENEN: 
+    • DATOS acerca de lo que se está tratando de modelar 
+    • COMPORTAMIENTOS relacionados con esos datos.
+Ventajas de la POO:
+    1. Mantenibilidad de las aplicaciones.
+    2. Código simple
+    3. REUTILIZACION de código (Mínima redundancia): el código se encuentra en un solo lugar y no se repite, así los errores son más fáciles de detectar y es más fácil de cambiar.
+    4. ENCAPSULAMIENTO y MODULARIDAD: se puede cambiar fácilmente un objeto por otro con la misma INTERFAZ, aunque su implementación sea completamente distinta.
+SINTAXIS PHP para clases:
+Class Nombre {
+//atributos que son variables
+$v1;
+$v2;
+
+//métodos que son funciones
+Function loquesea (argumentos) {
+
+}
+}
+El constructor es un método que se llama igual que la clase. Para INSTANCIAR un objeto de una clase, invocamos su constructor utilizando el método new.
+Para acceder a los métodos o atributos de una clase, utilizamos la sintaxis ->
+Ejemplo:
+Class Cosas {
+	$cosa= ”hola”;
+	$cont=0;
+	
+	Function ver() {
+		Echo $cosa;
+	}
+}// class
+
+$c= new cosas();
+$c -> ver();
+En PHP existe la HERECIA SIMPLE, con la palabra extends.
+Ejercicio: 
+    1. Crear una clase vista.inc.php que 
+        a. contenga una clase llamada Vista 
+        b. incluya el método tabla del ejercicio
+    2. Crear un anueva versión del ejercicio donde
+        a. Se elimine el código de la función table
+Para el ejercicio de login, vamos a considerar que la contraseña de cada usuario es igual que el login, PERO que esta almacenada en FORMATO MD5.
+PHP tiene un método md5(String s) que permite calcular el hash de esa cadena con el algoritmo md5.
+
+Variante del ejercicio 6:
+Se deben implementar todas estas funcionalidades siguiendo el patrón MVC: una clase para la Vista, etc.
+Para la gestión del acceso a datos, crearemos una clase DAO que contenga los métodos CRUD:
+getAll(): devuelve una lista con todos los productos
+get(int cod): dado un código de producto, devuelve ese producto
+sabe(Producto): dados los datos de un nuevo producto, lo inserta en la BD
+update(Producto):
+delete(Producto):
+2º Parte: En la pagina de inicio aparecerá
+    1. Una cabecera de bienvenida
+    2. Una lista de opciones desplegable, que permita elegir uno entre los idiomas disponibles. Esta lista estará siempre visible
+        2.1. Los idiomas estarán definidos en un array y la lista de idiomas se generará automáticamente incluyendo los idiomas comprendidos en el array.
+        2.2. El array estará en un archivo separado, llamado const.inc.php, que podrá contener otros arrays, constantes, etc. En concreto, en este archivo se almacenarán las estructuras de datos que permitan la traducción automática de la página.
+        2.3. Al seleccionar el idioma, se mostrarán los elementos del formulario de login en el idioma adecuado. Después, la navegación continuara normalmente
