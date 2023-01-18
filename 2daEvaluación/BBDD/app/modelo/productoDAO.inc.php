@@ -16,10 +16,10 @@ public function getAll(){ //Método que DEVUELVE un ARRAY con TODOS los Producto
 
             //ejecutar consulta NO PREPARADA
             $q = "Select * FROM productos";
-            $prods=$db->query($sql);
+            $prods=$conn->query($q);
 
 
-            $dbd->close()
+            $dbd->close();
         }catch(PDOException $e){
             echo "<h1>ERROR</h1>";
         }

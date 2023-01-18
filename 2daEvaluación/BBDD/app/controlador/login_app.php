@@ -67,10 +67,10 @@ require_once("../vista/vista.inc.php");
         <input type="text" name="pass" id="pass" value="ana"><br>
         <input type="submit" name="enviar" id="enviar"><br>
         <select name="lang">
-            <option>Español</option>
-            <option>Inglés</option>
-            <option>Francés</option>
-            <option>Portugués</option>
+            <option value='es'>Español</option>
+            <option value='en'>Inglés</option>
+            <option value='fr'>Francés</option>
+            <option value='pr'>Portugués</option>
         </select>
         </form>
     </body>
