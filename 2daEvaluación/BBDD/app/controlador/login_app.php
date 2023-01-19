@@ -48,7 +48,7 @@ require_once("../vista/vista.inc.php");
                             $_SESSION['user']=$_POST['user'];
                             $_SESSION['pass']=$_POST['pass'];
                             $_SESSION['lang']=$_POST['lang'];
-                            header("Location: panel_app.php");
+                            header("Location: front_app.php");
                         }else{
                             echo("<h2>Nombre o contraseña incorrectos</h2>");
                         }
