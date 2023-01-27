@@ -1,4 +1,5 @@
 <?php
+
     require_once("./modelo/const.inc.php");
     define("BR","<br/>\n");
     class Vista{
@@ -50,8 +51,10 @@
                     echo("<td>$v</td>\n");
                 }
                 echo("</tr>\n");
+        
             }
             echo("</table>\n");
+        
         }
         private function bienvenida($user){
             echo("<h3>".LANGS[$this->lang]['welcome'].", ". $user."</h3>");
