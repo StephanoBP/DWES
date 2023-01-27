@@ -76,7 +76,7 @@
             echo("\n</br>\n");
             echo("</form>");
         }
-        public function cabezera(){
+        public function cabecera(){
             echo(
                 "<html lang='es'>
                 <head>
@@ -96,7 +96,7 @@
             $this->menu_nav();
 			echo("</div>");        
         }
-        public function cierre_cabezera(){
+        public function cierre_cabecera(){
             echo("
                 </div>			
                 </body>
@@ -192,4 +192,3 @@
             );
         }
     }
-?>

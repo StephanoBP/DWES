@@ -17,8 +17,8 @@
 ?>
 
 <?php
-	$v->cabezera();
+	$v->cabecera();
 	$v->front_menu();
 	$v->front_cuerpo();
-	$v->cierre_cabezera();
+	$v->cierre_cabecera();
 ?>	
