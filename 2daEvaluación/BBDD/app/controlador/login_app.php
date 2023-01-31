@@ -5,9 +5,9 @@
         $_SESSION=array();
         session_destroy();
     }
-    require_once("./modelo/conn.php");
-    require_once("./vista/vista.inc.php");
-    require_once('./modelo/const.inc.php');
+    require_once("../modelo/conn.inc.php");
+    require_once("../vista/vista.inc.php");
+    require_once('../modelo/const.inc.php');
     if(!isset($_SESSION['lang'])){
         //$_SESSION['lang']=array_key_first(LANGS);
         $_SESSION['lang']=array_keys(LANGS)[0];
