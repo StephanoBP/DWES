@@ -173,7 +173,7 @@
             echo("<h2>Productos</h2>");
             echo("<form action='".$_SERVER['PHP_SELF']."' method='POST'>\n");
             foreach (ACTIONS as $key => $value) {
-                echo("<input type='submit' name='$key' id='alta' value='$value'><br>\n");
+                echo("<input type='submit' name='$key' onclick='javascript'alert('Se ha pulsado $value')' id='alta' value='$value'><br>\n");
             }
             echo("</form>\n");
             echo("</fieldset>

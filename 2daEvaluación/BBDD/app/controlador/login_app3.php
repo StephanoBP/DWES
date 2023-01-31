@@ -73,5 +73,11 @@ require_once("../vista/vista.inc.php");
             <option value='pr'>Portugués</option>
         </select>
         </form>
+        <?php
+        echo "<button onclick='javascript'alert('Se ha pulsado Query')>QUERY</button>";
+        echo "<button onclick='javascript'alert('Se ha pulsado New')>NEW</button>";
+        echo "<button onclick='javascript'alert('Se ha pulsado Delete')>DELETE</button>";
+        echo "<button onclick='javascript'alert('Se ha pulsado Update')>UPDATE</button>";
+        ?>
     </body>
 </html>
