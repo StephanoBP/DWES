@@ -49,23 +49,22 @@ function close(){
 }//class
 function ejemplo(){	
 //Ejemplo básico para ver si conecta y ejecuta SQL
-try{
-	
-	$c= new Conn();		
-	$bd= $c->getConn();
-	echo "<h1>Conectado</h1>";
-	
-	//consultamos los usuarios de mysql
-	
-	$sql= "SELECT * FROM empleados";
-	$users= $bd->query($sql);
-	echo "</br>".$users->rowCount();
-	
-	$c->close();
-	
-}catch(PDOException $e){
-	echo "<h1>Error</h1>";
+	try{
+		
+		$c= new Conn();		
+		$bd= $c->getConn();
+		echo "<h1>Conectado</h1>";
+		
+		//consultamos los usuarios de mysql
+		
+		$sql= "SELECT * FROM empleados";
+		$users= $bd->query($sql);
+		echo "</br>".$users->rowCount();
+		
+		$c->close();
+		
+	}catch(PDOException $e){
+		echo "<h1>Error</h1>";
+	}
 }
-}
-
 

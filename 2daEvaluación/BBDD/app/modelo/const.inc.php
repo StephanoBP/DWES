@@ -16,7 +16,16 @@ define("LANGS",[
                 "Salir"=>"SALIR",
                 "Inicio"=>"INICIO",
                 "Cart"=>"CARRITO",
-                "tituloLogin"=>"Formulario de login"
+                "tituloLogin"=>"Formulario de login",
+                "enviar"=>"CONSULTAR",
+                "nuevo"=>"NUEVO",
+                "borrar"=>"BORRAR",
+                "modificar"=>"MODIFICAR",
+                "codigo"=>"codigo",
+                "producto"=>"producto",
+                "proovedor"=>"proovedor",
+                
+
         ],
         "en"=>["lang"=>"ENGLISH",
                 "welcome"=>"WELCOME",
@@ -33,8 +42,11 @@ define("LANGS",[
                 "Salir"=>"EXIT",
                 "Inicio"=>"INDEX",
                 "Cart"=>"CART",
-                "tituloLogin"=>"Login Form"
-
+                "tituloLogin"=>"Login Form",
+                "enviar"=>"QUERY",
+                "nuevo"=>"NEW",
+                "borrar"=>"DELETE",
+                "modificar"=>"UPDATE"
         ],
         "fr"=>["lang"=>"FRANÇAIS",
                 "welcome"=>"BIENVENU",
@@ -51,7 +63,11 @@ define("LANGS",[
                 "Salir"=>"SORTIR",
                 "Inicio"=>"COMMENCER",
                 "Cart"=>"CADDIE",
-                "tituloLogin"=>"Formulario d'entre"
+                "tituloLogin"=>"Formulario d'entre",
+                "enviar"=>"ENVOYER",
+                "nuevo"=>"NOUVEAU",
+                "borrar"=>"EFFACER",
+                "modificar"=>"MODIFIER"
         ],
         "de"=>["lang"=>"DEUTSCH",
                 "welcome"=>"WILLKOMMEN",
@@ -68,21 +84,22 @@ define("LANGS",[
                 "Salir"=>"EXIT",
                 "Inicio"=>"ANFANG",
                 "Cart"=>"CART",
-                "tituloLogin"=>"Eingabeformular"
+                "tituloLogin"=>"Eingabeformular",
+                "enviar"=>"ANFRAGE",
+                "nuevo"=>"NEU",
+                "borrar"=>"LÖSCHEN",
+                "modificar"=>"ÄNDERN"
         ]
 ]);
 define("OPS",[
         // "Login"=>"login.php",
-        "Inicio"=>"front.php",
-        "Salir"=>"login.php",
-        "Cart"=>"cart.php"
+        "Inicio"=>"front_app.php",
+        "Salir"=>"login_app.php",
+        "Cart"=>"cart_app.php"
 
         ]);
-define("ACTIONS",[
-        "enviar"=>"Enviar",
-        "baja"=>"Baja",
-        "modificacion"=>"Modificacion",
-        "consultar"=>"Consultar"
+define('CRUD', [
+        "user"=>["enviar"],
+        "admin"=>["enviar", "nuevo", "borrar", "modificar"]
 ]);
-
 ?>

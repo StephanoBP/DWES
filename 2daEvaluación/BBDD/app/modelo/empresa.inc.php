@@ -1,5 +1,5 @@
 <?php
-//emple.inc.php
+//empresa.inc.php
 
 define('HOST', 'localhost');
 define('BD', 'gesventa');

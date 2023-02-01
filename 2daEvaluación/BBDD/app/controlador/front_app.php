@@ -4,8 +4,8 @@
 	if(!isset($_SESSION['user'])){
 		header("location: login.php");
 	}
-    require_once("./vista/vista.inc.php");
-    require_once("./modelo/productoDAO.inc.php");
+    require_once("../vista/vista.inc.php");
+    require_once("../modelo/productoDAO.inc.php");
 	$v=new Vista($_SESSION['lang']);
 	if(isset($_POST['lang'])){
 		$_SESSION['lang']=$_POST['lang'];

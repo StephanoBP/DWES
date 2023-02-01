@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <?php
+    require_once("../modelo/conn.inc.php");
+    require_once("../vista/vista.inc.php");
+    require_once("../modelo/modelo.inc.php");
+    require_once("../modelo/const.inc.php");
     session_start();
     if(isset($_SESSION['user'])){
         $_SESSION=array();
         session_destroy();
     }
-    require_once("../modelo/conn.inc.php");
-    require_once("../vista/vista.inc.php");
-    require_once('../modelo/const.inc.php');
+
     if(!isset($_SESSION['lang'])){
         //$_SESSION['lang']=array_key_first(LANGS);
         $_SESSION['lang']=array_keys(LANGS)[0];
@@ -32,12 +34,14 @@
                 $stmt=$bd->prepare("SELECT COUNT(*) FROM usuarios WHERE usr='".$nombre."' AND pass='".$password."'");
                 $stmt->execute();
                 $ee=$stmt->fetchAll();
+                $m=new Modelo();
                 if($ee[0][0]=="1"){
                     $_SESSION['user']=$_POST['user'];
-                    $_SESSION['pass']=$_POST['pass'];
-                    header("Location: panel_app.php");
+                    $_SESSION['rol']=$m->getRol($_SESSION['user']);
+                    header("Location: front_app.php");
                 }else{
                     echo("<h2>Nombre o contraseña incorrectos</h2>");
+                    //lang no data
                 }
             }   
             $con->close();

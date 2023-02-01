@@ -26,4 +26,10 @@ class Modelo{
         }
         return $mssg;
     }
+    public function getRol($user){
+        if ($user === "ana")
+            return "admin";
+        else
+            return "user";
+    }
 }
