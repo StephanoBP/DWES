@@ -2,9 +2,10 @@
 <%@ page import="java.sql."%>
 <%@ page import="javax.sql."%>
 <%@ page import="javax.naming.*"%>
-<%! int diaRandom;
-int fechaActual;
-int resultado;
+<%! 
+    int diaRandom;
+    int fechaActual;
+    int resultado;
 %>
 
 <html lang="es">
@@ -26,17 +27,11 @@ int resultado;
         <%
             diaRandom = (int) (Math.random() * 9 + 2022);
             fechaActual = Calendar.getInstance().get(Calendar.YEAR);
-            resultado = diaRandom-fechaActual;
-            if(session.getAttribute("session")!=null){
-                session.setAttribute("session", (int) session.getAttribute("session")+1);
-            }else{
-                session.setAttribute("session", 1);
-            }
-            if(resultado==0){
-                out.println("<h1>NUNCA</h1>");
-            }else{
-                out.println("<h1>"+ resultado + " años" + "</h1>"); 
-            }
+            resultado = diaRandom - fechaActual;
+            if(session.getAttribute("session")!=null)session.setAttribute("session", (int) session.getAttribute("session")+1);
+            else session.setAttribute("session", 1);
+            if(resultado==0) out.println("<h1>NUNCA</h1>");
+            else out.println("<h1>"+ resultado + " años" + "</h1>"); 
             try {
                 Connection con = null;
                 InitialContext initialContext = new InitialContext();
