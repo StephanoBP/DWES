@@ -17,14 +17,16 @@ define("LANGS",[
                 "Inicio"=>"INICIO",
                 "Cart"=>"CARRITO",
                 "tituloLogin"=>"Formulario de login",
-                "enviar"=>"CONSULTAR",
+                "consultar"=>"CONSULTAR",
                 "nuevo"=>"NUEVO",
                 "borrar"=>"BORRAR",
                 "modificar"=>"MODIFICAR",
-                "codigo"=>"codigo",
-                "producto"=>"producto",
-                "proovedor"=>"proovedor",
-                
+                "cod"=>"Codigo",
+                "nom_prod"=>"Nombre",
+                "pvp"=>"Precio",
+                "prov"=>"Proovedor",
+                "existencias"=>"Existencias",
+                "filtros"=>"FILTROS"
 
         ],
         "en"=>["lang"=>"ENGLISH",
@@ -43,10 +45,16 @@ define("LANGS",[
                 "Inicio"=>"INDEX",
                 "Cart"=>"CART",
                 "tituloLogin"=>"Login Form",
-                "enviar"=>"QUERY",
+                "consultar"=>"QUERY",
                 "nuevo"=>"NEW",
                 "borrar"=>"DELETE",
-                "modificar"=>"UPDATE"
+                "modificar"=>"UPDATE",
+                "cod"=>"Code",
+                "nom_prod"=>"Name",
+                "pvp"=>"Price",
+                "prov"=>"Supplier",
+                "existencias"=>"Stock",
+                "filtros"=>"FILTERS"
         ],
         "fr"=>["lang"=>"FRANÇAIS",
                 "welcome"=>"BIENVENU",
@@ -64,10 +72,16 @@ define("LANGS",[
                 "Inicio"=>"COMMENCER",
                 "Cart"=>"CADDIE",
                 "tituloLogin"=>"Formulario d'entre",
-                "enviar"=>"ENVOYER",
+                "consultar"=>"ENVOYER",
                 "nuevo"=>"NOUVEAU",
                 "borrar"=>"EFFACER",
-                "modificar"=>"MODIFIER"
+                "modificar"=>"MODIFIER",
+                "cod"=>"Code",
+                "nom_prod"=>"Name",
+                "pvp"=>"Prix",
+                "prov"=>"Fournisseur",
+                "existencias"=>"Stock",
+                "filtros"=>"DILTRES"
         ],
         "de"=>["lang"=>"DEUTSCH",
                 "welcome"=>"WILLKOMMEN",
@@ -85,10 +99,16 @@ define("LANGS",[
                 "Inicio"=>"ANFANG",
                 "Cart"=>"CART",
                 "tituloLogin"=>"Eingabeformular",
-                "enviar"=>"ANFRAGE",
+                "consultar"=>"ANFRAGE",
                 "nuevo"=>"NEU",
                 "borrar"=>"LÖSCHEN",
-                "modificar"=>"ÄNDERN"
+                "modificar"=>"ÄNDERN",
+                "cod"=>"Code",
+                "nom_prod"=>"Name",
+                "pvp"=>"Preis",
+                "prov"=>"Anbieter",
+                "existencias"=>"Aktie",
+                "filtros"=>"FILTER"
         ]
 ]);
 define("OPS",[
@@ -99,7 +119,7 @@ define("OPS",[
 
         ]);
 define('CRUD', [
-        "user"=>["enviar"],
-        "admin"=>["enviar", "nuevo", "borrar", "modificar"]
+        "user"=>["consultar"],
+        "admin"=>["consultar", "nuevo", "borrar", "modificar"]
 ]);
 ?>

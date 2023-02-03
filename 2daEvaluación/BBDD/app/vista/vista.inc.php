@@ -1,5 +1,6 @@
 <?php
     require_once("../modelo/const.inc.php");
+    require_once("../modelo/modelo.inc.php");
     define("BR","<br/>\n");
 class Vista
 {
@@ -15,18 +16,24 @@ class Vista
     public function tablaCR($t)
     {
         $s = "<table border=1>" . BR;
-        $s .= "<tr>";
-        foreach ($t[0] as $k => $f) {
-            $s .= "<th>$k</th>";
-        }
-        $s .= "</tr>";
-        foreach ($t as $k => $f) {
+        if(isset($t[0])){
             $s .= "<tr>";
-            foreach ($f as $v) {
-                $s .= "<td>$v</td>\n";
+            foreach ($t[0] as $k => $f) {
+                $s .= "<th>$k</th>";
             }
-            $s .= "</tr>\n";
+            $s .= "</tr>";
+            foreach ($t as $k => $f) {
+                $s .= "<tr>";
+                foreach ($f as $v) {
+                    $s .= "<td>$v</td>\n";
+                }
+                $s .= "</tr>\n";
 
+            }
+        }else{
+            echo "<h1>No se ha encontrado nada con los filtros específicos</h1>" . BR;
+            $pdao = new ProductoDAO();
+            $this->tablaCR($pdao->getAll());
         }
         $s . "</table>\n";
         echo $s;
@@ -165,7 +172,10 @@ class Vista
 			<legend>LISTADO: </legend>"
         );
         $pdao = new productoDAO();
-        $this->tablaCR($pdao->getAll());
+        if (isset($_POST["filtros"])){
+            $filtros = "$_POST[cod],$_POST[nom_prod],$_POST[pvp],$_POST[prov],$_POST[existencias]";
+            $this->tablaCR($pdao->get(explode(",",$filtros)));
+        }else $this->tablaCR($pdao->getAll());
         echo (
             "</fieldset>
                 </div>");
@@ -198,7 +208,8 @@ class Vista
             "<div>
 			<fieldset>
 				<legend>Filtros: </legend>");
-        echo ("ESTA ES UNA SECCIÓN de FILTROS");
+        if(isset($_POST["consultar"]))$this->mostrar_filtros();
+        else echo ("klk");
         echo ("	
                 </fieldset>
                 </div>
@@ -224,7 +235,19 @@ class Vista
         }
     }
     public function mostrar_filtros(){
-        
+        echo ("<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n");
+        $m = new Modelo();
+        $results=$m->consultar("productos");
+        foreach ($results as $row) {
+            if ($row['Field'] != "imagen") {
+                echo "<label for='$row[Field]'>" . LANGS[$this->lang][$row['Field']]."</label>";
+                if (strpos($row['Type'], "varchar") !== false) {
+                    echo "<input type='text' name='$row[Field]' id='$row[Field]'/><br/>";
+                }else echo "<input type='number' name='$row[Field]' id='$row[Field]'/><br/>";
+            }
+        }
+        echo("<input type='submit' name='filtros' id='filtros' value='".LANGS[$this->lang]['filtros']."'/>");
+        echo ("</form>\n");
     }
 }
 ?>

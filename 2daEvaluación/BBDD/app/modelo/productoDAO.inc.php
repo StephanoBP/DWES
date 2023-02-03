@@ -40,24 +40,22 @@ public function getAll(){ //Método que DEVUELVE un ARRAY con TODOS los Producto
                 exit;
             }
 }
-public function get($i){//Método que RECIBE un dato con el cod de un Producto y DEVUELVE el producto asociado a ese campo
-    
-}
-public function consultar(){
+public function get($a){//Método que RECIBE un dato con el cod de un Producto y DEVUELVE el producto asociado a ese campo
     try{
         $dbh = new Conn();
         $bd=$dbh->getConn();
 
-        $stmt = $bd->query("DESCRIBE productos");
+        $q="SELECT * FROM productos where cod<=$a[0] AND nom_prod LIKE'$a[1]%'   AND pvp<=$a[2] AND prov LIKE '$a[3]%' AND existencias<=$a[4]";
 
-        $prods=$bd->query($stmt);
+        $prods=$bd->query($q);
         $ee=$prods->fetchAll(PDO::FETCH_ASSOC);
         $dbh->close();
         return $ee;
     }catch(PDOException $e){
-        print("Error getAll<br/>");
+        print("Error get<br/>".$e->getMessage());
         exit;
     }
 }
+
 }
 ?>

@@ -32,4 +32,18 @@ class Modelo{
         else
             return "user";
     }
+    public function consultar($t){
+        try{
+            $dbh = new Conn();
+            $bd=$dbh->getConn();
+    
+            $stmt = $bd->query("DESCRIBE $t");
+            $ee = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $dbh->close();
+            return $ee;
+        }catch(PDOException $e){
+            print("Error consultar: <br/>".$e->getMessage());
+            exit;
+        }
+    }
 }
