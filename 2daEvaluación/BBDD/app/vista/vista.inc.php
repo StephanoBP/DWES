@@ -173,8 +173,13 @@ class Vista
         );
         $pdao = new productoDAO();
         if (isset($_POST["filtros"])){
-            $filtros = "$_POST[cod],$_POST[nom_prod],$_POST[pvp],$_POST[prov],$_POST[existencias]";
-            $this->tablaCR($pdao->get(explode(",",$filtros)));
+            $filtros = "";
+            for($i=0;$i<count(NOM);$i++){
+                if((count(NOM)-1)!=$i)$filtros .= $_POST[NOM[$i]] . ",";
+                else $filtros .= $_POST[NOM[$i]];
+            }
+            //$this->tablaCR($pdao->getFiltered(explode(",",$filtros)));
+            $pdao->getFiltered(explode(",", $filtros));
         }else $this->tablaCR($pdao->getAll());
         echo (
             "</fieldset>

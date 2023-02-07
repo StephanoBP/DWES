@@ -117,9 +117,16 @@ define("OPS",[
         "Salir"=>"login_app.php",
         "Cart"=>"cart_app.php"
 
-        ]);
+]);
 define('CRUD', [
         "user"=>["consultar"],
         "admin"=>["consultar", "nuevo", "borrar", "modificar"]
+]);
+define('NOM',[     
+        "cod",
+        "nom_prod",
+        "pvp",
+        "prov",
+        "existencias"
 ]);
 ?>
