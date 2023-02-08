@@ -178,8 +178,8 @@ class Vista
                 if((count(NOM)-1)!=$i)$filtros .= $_POST[NOM[$i]] . ",";
                 else $filtros .= $_POST[NOM[$i]];
             }
-            //$this->tablaCR($pdao->getFiltered(explode(",",$filtros)));
-            $pdao->getFiltered(explode(",", $filtros));
+            $this->tablaCR($pdao->getFiltered(explode(",",$filtros)));
+            //$pdao->getFiltered(explode(",", $filtros));
         }else $this->tablaCR($pdao->getAll());
         echo (
             "</fieldset>
@@ -239,7 +239,7 @@ class Vista
             }
         }
     }
-    public function mostrar_filtros(){
+    public function mostrar_filtros($r=""){
         echo ("<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n");
         $m = new Modelo();
         $results=$m->consultar("productos");

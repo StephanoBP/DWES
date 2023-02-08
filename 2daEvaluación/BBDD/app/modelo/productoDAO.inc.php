@@ -45,23 +45,21 @@ public function getFiltered($a){//Método que RECIBE un dato con el cod de un Pr
         $dbh = new Conn();
         $bd=$dbh->getConn();
         $q = "SELECT * FROM productos WHERE ";
-        echo "<h1>$q</h1>";
         for($i=0;$i<count(NOM);$i++){
             if (isset($a[$i])) {
-                if ((count(NOM) - 1) != $i && isset($a[$i+1])) $q .= (is_string($a[$i])===true? NOM[$i]." LIKE'$a[$i]%' AND ": NOM[$i]."<=$a[$i] AND ");
-                else $q .= (is_string($a[$i])===true? NOM[$i]." LIKE'$a[$i]%'": NOM[$i]."<=$a[$i]");
+                if ((count(NOM) - 1) != $i && isset($a[$i+1])) $q .= (is_numeric($a[$i])!=true? NOM[$i]." LIKE'$a[$i]%' AND ": NOM[$i]."<=$a[$i] AND ");
+                else $q .= (is_numeric($a[$i])!=true? NOM[$i]." LIKE'$a[$i]%'": NOM[$i]."<=$a[$i]");
             }
             
         }
         //$q="SELECT * FROM productos where cod<=$a[0] AND nom_prod LIKE'$a[1]%' AND pvp<=$a[2] AND prov LIKE '$a[3]%' AND existencias<=$a[4]";
-        /*
+
         $prods=$bd->prepare($q);
         $prods->execute();
         $result=$prods->fetchAll(PDO::FETCH_ASSOC);
         $dbh->close();
         return $result;
-        */
-        echo "<h1>$q</h1>";
+
     }catch(PDOException $e){
         print("Error get<br/>".$e->getMessage());
         exit;
