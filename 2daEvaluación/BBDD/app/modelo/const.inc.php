@@ -129,4 +129,10 @@ define('NOM',[
         "prov",
         "existencias"
 ]);
+define("BOTN",[
+        "consultar"=>"btFiltros",
+        "nuevo"=>"btNuevo",
+        "borrar"=>"btBorrar",
+        "modificar"=>"btModificar"
+])
 ?>

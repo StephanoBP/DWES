@@ -14,7 +14,10 @@
 ?>
 <?php
 	$v->cabecera();
-	$v->front_menu();
-	$v->front_cuerpo();
+	$res = $v->mostrar_boton();
+	$v->front_menu($res);
+	if (isset($_POST["btFiltros"]))$v->front_cuerpo_filtrado();
+	else if (isset($_POST["btNuevo"]))$v->front_cuerpo_insertado();
+	else $v->front_cuerpo();
 	$v->cierre_cabecera();
 ?>

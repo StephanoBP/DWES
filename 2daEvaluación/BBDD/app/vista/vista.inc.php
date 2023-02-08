@@ -159,34 +159,57 @@ class Vista
         }
 
     }
-    public function front_menu()
-    {
+    public function front_menu($res){
         $this->front_menu_productos();
-        $this->front_menu_filtros();
+        $this->front_menu_filtros($res);
     }
-    public function front_cuerpo()
-    {
+    public function front_cuerpo_filtrado(){
         echo (
             "<div id='cuerpo' style='width:70%; float:left;'>
 			<fieldset>
 			<legend>LISTADO: </legend>"
         );
         $pdao = new productoDAO();
-        if (isset($_POST["filtros"])){
-            $filtros = "";
-            for($i=0;$i<count(NOM);$i++){
-                if((count(NOM)-1)!=$i)$filtros .= $_POST[NOM[$i]] . ",";
-                else $filtros .= $_POST[NOM[$i]];
-            }
-            $this->tablaCR($pdao->getFiltered(explode(",",$filtros)));
-            //$pdao->getFiltered(explode(",", $filtros));
-        }else $this->tablaCR($pdao->getAll());
+        $filtros = $this->crear_array_Filtros();
+        $this->tablaCR($pdao->getFiltered(explode(",",$filtros)));
         echo (
             "</fieldset>
                 </div>");
     }
-    public function front_menu_productos()
-    {
+    public function front_cuerpo_insertado(){
+        echo (
+            "<div id='cuerpo' style='width:70%; float:left;'>
+			<fieldset>
+			<legend>LISTADO: </legend>"
+        );
+        $pdao = new productoDAO();
+        $filtros = $this->crear_array_Filtros();
+        $this->tablaCR($pdao->getInsert(explode(",",$filtros)));
+        echo (
+            "</fieldset>
+                </div>");
+    }
+    public function front_cuerpo(){
+        echo (
+            "<div id='cuerpo' style='width:70%; float:left;'>
+			<fieldset>
+			<legend>LISTADO: </legend>"
+        );
+        $pdao = new productoDAO();
+        $this->tablaCR($pdao->getAll());
+        echo (
+            "</fieldset>
+                </div>");
+    }
+    public function crear_array_filtros(){
+        $filtros = "";
+        for($i=0;$i<count(NOM);$i++){
+            if((count(NOM)-1)!=$i&&isset($_POST[NOM[$i]]))$filtros .= $_POST[NOM[$i]] . ",";
+            else if(isset($_POST[NOM[$i]])) $filtros .= $_POST[NOM[$i]];
+        }
+        return $filtros;
+    }
+    public function front_menu_productos(){
         echo (
             "<div style='overflow:hidden; width:100%; height:80%;'>
                 <div id='tables' style='float:left; width:30%; '>
@@ -194,7 +217,6 @@ class Vista
                         <fieldset>
                         <legend>Menu</legend>"
         );
-        echo ($this->mostrar_boton());
         echo ("<h2>Productos</h2>");
         echo ("<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n");
         // for ($i = 0; $i < count(ACTIONS);$i++) {
@@ -207,42 +229,31 @@ class Vista
         echo ("</fieldset>
 			</div>");
     }
-    public function front_menu_filtros()
-    {
+    public function front_menu_filtros($res){
         echo (
             "<div>
 			<fieldset>
 				<legend>Filtros: </legend>");
-        if(isset($_POST["consultar"]))$this->mostrar_filtros();
-        else echo ("klk");
+        if(isset($res))$this->mostrar_filtros($res);
         echo ("	
                 </fieldset>
                 </div>
             </div>"
         );
     }
-    public function mostrar_boton()
-    {
-        //     if(isset($_POST['enviar'])){
-        //         return ("Se ha pulsado $_POST[enviar]");
-        //     }else if(isset($_POST['nuevo'])){
-        //         return ("Se ha pulsado $_POST[nuevo]");
-        //     }else if(isset($_POST['borrar'])){
-        //         return ("Se ha pulsado $_POST[borrar]");
-        //     }else if(isset($_POST['modificar'])){
-        //         return ("Se ha pulsado $_POST[modificar]");
-        //     }
-        // }
+    public function mostrar_boton(){
         for($i = 0; $i < count(CRUD[$_SESSION["rol"]]);$i++){ 
             if (isset($_POST[CRUD[$_SESSION["rol"]][$i]])) {
-                return ("Se ha pulsado ". LANGS[$this->lang][CRUD[$_SESSION["rol"]][$i]]); 
+                echo "<h1>Se ha pulsado ". LANGS[$this->lang][CRUD[$_SESSION["rol"]][$i]]."</h1>";
+                return CRUD[$_SESSION["rol"]][$i];
             }
         }
     }
-    public function mostrar_filtros($r=""){
+    public function mostrar_filtros($CRUD){
         echo ("<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n");
         $m = new Modelo();
         $results=$m->consultar("productos");
+        if ($CRUD == "nuevo")unset($results[0]);
         foreach ($results as $row) {
             if ($row['Field'] != "imagen") {
                 echo "<label for='$row[Field]'>" . LANGS[$this->lang][$row['Field']]."</label>";
@@ -251,7 +262,7 @@ class Vista
                 }else echo "<input type='number' name='$row[Field]' id='$row[Field]'/><br/>";
             }
         }
-        echo("<input type='submit' name='filtros' id='filtros' value='".LANGS[$this->lang]['filtros']."'/>");
+        echo("<input type='submit' name='".BOTN[$CRUD] ."'id='".BOTN[$CRUD]."' value='".LANGS[$this->lang]['filtros']."'/>");
         echo ("</form>\n");
     }
 }
