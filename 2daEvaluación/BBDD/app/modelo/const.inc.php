@@ -26,7 +26,11 @@ define("LANGS",[
                 "pvp"=>"Precio",
                 "prov"=>"Proovedor",
                 "existencias"=>"Existencias",
-                "filtros"=>"FILTROS"
+                "btFiltros"=>"FILTROS",
+                "btNuevo" =>"INSERTAR",
+                "añadir" =>"AÑADIR",
+                "btBorrar"=>"BORRAR",
+                "btModificar"=>"MODIFICAR"
 
         ],
         "en"=>["lang"=>"ENGLISH",
@@ -54,7 +58,11 @@ define("LANGS",[
                 "pvp"=>"Price",
                 "prov"=>"Supplier",
                 "existencias"=>"Stock",
-                "filtros"=>"FILTERS"
+                "btFiltros"=>"QUERY",
+                "btNuevo" =>"INSERT",
+                "añadir" =>"ADD",
+                "btBorrar"=>"DELETE",
+                "btModificar"=>"UPDATE"
         ],
         "fr"=>["lang"=>"FRANÇAIS",
                 "welcome"=>"BIENVENU",
@@ -81,7 +89,12 @@ define("LANGS",[
                 "pvp"=>"Prix",
                 "prov"=>"Fournisseur",
                 "existencias"=>"Stock",
-                "filtros"=>"DILTRES"
+                "btFiltros"=>"ENVOYER",
+                "btNuevo" =>"INSÉRER",
+                "añadir" =>"AJOUTER",
+                "btBorrar"=>"EFFACER",
+                "btModificar"=>"MODIFIER"
+
         ],
         "de"=>["lang"=>"DEUTSCH",
                 "welcome"=>"WILLKOMMEN",
@@ -108,7 +121,11 @@ define("LANGS",[
                 "pvp"=>"Preis",
                 "prov"=>"Anbieter",
                 "existencias"=>"Aktie",
-                "filtros"=>"FILTER"
+                "btFiltros"=>"ANFRAGE",
+                "btNuevo" =>"EINFÜGUNG",
+                "añadir" =>"HINZUFÜGEN",
+                "btBorrar"=>"LÖSCHEN",
+                "btModificar"=>"ÄNDERN"
         ]
 ]);
 define("OPS",[

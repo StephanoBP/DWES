@@ -17,6 +17,7 @@ class Vista
     {
         $s = "<table border=1>" . BR;
         if(isset($t[0])){
+            //var_dump($t);
             $s .= "<tr>";
             foreach ($t[0] as $k => $f) {
                 $s .= "<th>$k</th>";
@@ -26,6 +27,11 @@ class Vista
                 $s .= "<tr>";
                 foreach ($f as $v) {
                     $s .= "<td>$v</td>\n";
+                    if($v==$t[$k]["existencias"]){
+                        $s .= "<td><select name='".$t[$k]['cod']."'>";
+                        $s.= $this->opcionesTabla($v);
+                        $s.="</select><input type='submit' name='añadir' id='añadir' value='".LANGS[$this->lang]['añadir']."'/></td>";
+                    }
                 }
                 $s .= "</tr>\n";
 
@@ -37,6 +43,21 @@ class Vista
         }
         $s . "</table>\n";
         echo $s;
+    }
+    public function opcionesTabla($exist){
+        $res="";
+        if($exist>5){
+            for($i=0;$i<=5;$i++){
+                if($i==5)$res.= "<option value='$i' selected>$i</option>";
+                else $res.= "<option value='$i'>$i</option>";
+            }
+        }else{
+            for($i=0;$i<=$exist;$i++){
+                if($i==$exist)$res.= "<option value='$i' selected>$i</option>";
+                else $res.= "<option value='$i'>$i</option>";
+            }
+        }
+        return $res;
     }
     public function tabla($t)
     {
@@ -184,7 +205,8 @@ class Vista
         );
         $pdao = new productoDAO();
         $filtros = $this->crear_array_Filtros();
-        $this->tablaCR($pdao->getInsert(explode(",",$filtros)));
+        $pdao->getInsert(explode(",",$filtros));
+        $this->tablaCR($pdao->getAll());
         echo (
             "</fieldset>
                 </div>");
@@ -257,12 +279,19 @@ class Vista
         foreach ($results as $row) {
             if ($row['Field'] != "imagen") {
                 echo "<label for='$row[Field]'>" . LANGS[$this->lang][$row['Field']]."</label>";
-                if (strpos($row['Type'], "varchar") !== false) {
+                if($row['Field']=="prov"){
+                    echo "<select name='$row[Field]' id='$row[Field]'>";
+                    $proovedores=$m->getProovedores("productos");
+                    for($i=0;$i<count($proovedores);$i++){
+                        echo "<option value='".$proovedores[$i][$row['Field']]."'>".$proovedores[$i][$row['Field']]."</option>";
+                    }
+                    echo "</select><br/>";
+                }else if (strpos($row['Type'], "varchar") !== false) {
                     echo "<input type='text' name='$row[Field]' id='$row[Field]'/><br/>";
                 }else echo "<input type='number' name='$row[Field]' id='$row[Field]'/><br/>";
             }
         }
-        echo("<input type='submit' name='".BOTN[$CRUD] ."'id='".BOTN[$CRUD]."' value='".LANGS[$this->lang]['filtros']."'/>");
+        echo("<input type='submit' name='".BOTN[$CRUD] ."'id='".BOTN[$CRUD]."' value='".LANGS[$this->lang][BOTN[$CRUD]]."'/>");
         echo ("</form>\n");
     }
 }

@@ -46,4 +46,18 @@ class Modelo{
             exit;
         }
     }
+    public function getProovedores($t){
+        try{
+            $dbh = new Conn();
+            $bd=$dbh->getConn();
+    
+            $stmt = $bd->query("SELECT DISTINCT prov from $t");
+            $ee = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $dbh->close();
+            return $ee;
+        }catch(PDOException $e){
+            print("Error consultar: <br/>".$e->getMessage());
+            exit;
+        } 
+    }
 }

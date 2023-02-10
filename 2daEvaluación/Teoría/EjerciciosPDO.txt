@@ -42,3 +42,10 @@ En la página de inicio aparecerá
         la traducción automática de la página.
         2.3 Al seleccionar el idioma, se mostrarán los elementos del formulario de login en el idioma 
         adecuado. Después, la navegación continuará normalmente.
+
+
+CARRITO 
+Cada producto del listado debe visualizarse como un formulario con dos elementos:
+	· Una lista desplegable que permita seleccionar una cantidad, hasta 5 unidades o hasta las que hay si no hay 5
+	· Un botón para añadir las unidades seleccionadas de producto al carrito.
+	· 

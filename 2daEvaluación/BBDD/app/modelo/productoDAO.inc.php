@@ -77,27 +77,25 @@ class ProductoDAO
             $dbh = new Conn();
             $bd = $dbh->getConn();
             $cod = $this->getMaxCod() + 1;
-            $q = "INSERT INTO productos (";
+            $q = "INSERT INTO productos (".NOM[0].",";
             $cols = "";
             $vals = "";
             //VALUES
             for ($i = 0; $i < count(NOM); $i++) {
                 if (isset($a[$i])) {
                     if ((count(NOM) - 1) != $i && isset($a[$i + 1])) {
-                        $cols .= NOM[$i] . ",";
-                        $vals .= $a[$i] . ",";
+                        $cols .= NOM[$i+1] . ",";
+                        $vals .= (is_numeric($a[$i]) !=true ?"'$a[$i]'":$a[$i]). ",";
                     } else {
-                        $cols .= NOM[$i] . ")";
-                        $vals .= $a[$i] . ")";
+                        $cols .= NOM[$i+1] . ")";
+                        $vals .= (is_numeric($a[$i]) !=true ?"'$a[$i]'":$a[$i]) . ")";
                     }
                 }
             }
-                $q .= $cols . " VALUES " . $vals;
-                //$q="SELECT * FROM productos where cod<=$a[0] AND nom_prod LIKE'$a[1]%' AND pvp<=$a[2] AND prov LIKE '$a[3]%' AND existencias<=$a[4]";
-            echo "<h1> $q </h1>";
-                
-            
-
+            $q .= $cols . " VALUES (" . $cod.",".$vals;
+            //echo "<h1>$q</h1>";
+            $bd->exec($q);
+            $dbh->close();
         } catch (PDOException $e) {
             print("Error get<br/>" . $e->getMessage());
             exit;
@@ -108,13 +106,13 @@ class ProductoDAO
         try {
             $dbh = new Conn();
             $bd = $dbh->getConn();
-            $q = "SELECT MAX(cod) FROM productos; ";
+            $q = "SELECT MAX(cod) FROM productos;";
 
             $prods = $bd->prepare($q);
             $prods->execute();
             $result = $prods->fetchAll(PDO::FETCH_ASSOC);
             $dbh->close();
-            return $result;
+            return $result[0]["MAX(cod)"];
 
         } catch (PDOException $e) {
             print("Error get<br/>" . $e->getMessage());
