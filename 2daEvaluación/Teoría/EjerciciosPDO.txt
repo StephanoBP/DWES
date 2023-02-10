@@ -48,4 +48,3 @@ CARRITO
 Cada producto del listado debe visualizarse como un formulario con dos elementos:
 	· Una lista desplegable que permita seleccionar una cantidad, hasta 5 unidades o hasta las que hay si no hay 5
 	· Un botón para añadir las unidades seleccionadas de producto al carrito.
-	· 
