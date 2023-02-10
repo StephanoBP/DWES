@@ -126,6 +126,38 @@ define("LANGS",[
                 "añadir" =>"HINZUFÜGEN",
                 "btBorrar"=>"LÖSCHEN",
                 "btModificar"=>"ÄNDERN"
+        ],
+        "ch"=>[
+                "lang"=>"中文",
+                "welcome"=>"歡迎",
+                "user"=>"用戶名",
+                "pass"=>"密碼",
+                "idioma"=>"語言",
+                "send"=>"發送",
+                "login"=>"登錄",
+                "register"=>"註冊",
+                "logout"=>"退出",
+                "index"=>"首頁",
+                "cart"=>"購物車",
+                "Login"=>"登錄",
+                "Salir"=>"退出",
+                "Inicio"=>"首頁",
+                "Cart"=>"購物車",
+                "tituloLogin"=>"登錄表單",
+                "consultar"=>"查詢",
+                "nuevo"=>"新增",
+                "borrar"=>"刪除",
+                "modificar"=>"修改",
+                "cod"=>"代碼",
+                "nom_prod"=>"名稱",
+                "pvp"=>"價格",
+                "prov"=>"供應商",
+                "existencias"=>"庫存",
+                "btFiltros"=>"過濾器",
+                "btNuevo" =>"插入",
+                "añadir" =>"加入",
+                "btBorrar"=>"刪除",
+                "btModificar"=>"修改"
         ]
 ]);
 define("OPS",[
