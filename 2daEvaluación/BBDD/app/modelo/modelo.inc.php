@@ -46,18 +46,27 @@ class Modelo{
             exit;
         }
     }
-    public function getProovedores($t){
-        try{
+    public function getProds($t,$a){
+        try {
             $dbh = new Conn();
-            $bd=$dbh->getConn();
-    
-            $stmt = $bd->query("SELECT DISTINCT prov from $t");
-            $ee = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $bd = $dbh->getConn();
+            $q = "SELECT * FROM $t WHERE ";
+            foreach($a as $k=>$v){
+                if($v>0){
+                    $q.=NOM[0]."=$k OR ";
+                }
+            }
+            $q=substr($q,0,strlen($q)-3);
+            //$q="SELECT * FROM productos where cod<=$a[0] AND nom_prod LIKE'$a[1]%' AND pvp<=$a[2] AND prov LIKE '$a[3]%' AND existencias<=$a[4]";
+            //echo "<h1>$q</h1>";
+            $prods = $bd->prepare($q);
+            $prods->execute();
+            $result = $prods->fetchAll(PDO::FETCH_ASSOC);
             $dbh->close();
-            return $ee;
-        }catch(PDOException $e){
-            print("Error consultar: <br/>".$e->getMessage());
+            return $result;
+        } catch (PDOException $e) {
+            print("Error get<br/>" . $e->getMessage());
             exit;
-        } 
+        }
     }
 }

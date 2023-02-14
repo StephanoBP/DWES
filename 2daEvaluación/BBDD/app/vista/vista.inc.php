@@ -28,9 +28,10 @@ class Vista
                 foreach ($f as $v) {
                     $s .= "<td>$v</td>\n";
                     if($v==$t[$k]["existencias"]){
-                        $s .= "<td><select name='".$t[$k]['cod']."'>";
-                        $s.= $this->opcionesTabla($v);
-                        $s.="</select><input type='submit' name='añadir' id='añadir' value='".LANGS[$this->lang]['añadir']."'/></td>";
+                        $s.="<td><form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>";
+                        $s .= "<select name='cods[".$t[$k]['cod']."]'>";
+                        $s.= $this->opcionesTabla($v,$t[$k]['cod']);
+                        $s.="</select><input type='submit' name='añadir' id='añadir' value='".LANGS[$this->lang]['añadir']."'/></form</td>";
                     }
                 }
                 $s .= "</tr>\n";
@@ -44,17 +45,27 @@ class Vista
         $s . "</table>\n";
         echo $s;
     }
-    public function opcionesTabla($exist){
+    public function opcionesTabla($exist,$n){
         $res="";
         if($exist>5){
             for($i=0;$i<=5;$i++){
-                if($i==5)$res.= "<option value='$i' selected>$i</option>";
-                else $res.= "<option value='$i'>$i</option>";
+                if(isset($_SESSION['carrito'])){
+                    if($i==$_SESSION['carrito'][$n])$res.= "<option value='$i' selected>$i</option>";
+                    else $res.= "<option value='$i'>$i</option>";
+                }else{
+                    if($i==5)$res.= "<option value='$i' selected>$i</option>";
+                    else $res.= "<option value='$i'>$i</option>";
+                }
             }
         }else{
             for($i=0;$i<=$exist;$i++){
-                if($i==$exist)$res.= "<option value='$i' selected>$i</option>";
-                else $res.= "<option value='$i'>$i</option>";
+                if(isset($_SESSION['carrito'])){
+                    if($i==$_SESSION['carrito'][$n])$res.= "<option value='$i' selected>$i</option>";
+                    else $res.= "<option value='$i'>$i</option>";
+                }else{
+                    if($i==$exist)$res.= "<option value='$i' selected>$i</option>";
+                    else $res.= "<option value='$i'>$i</option>";
+                }
             }
         }
         return $res;
@@ -211,6 +222,17 @@ class Vista
             "</fieldset>
                 </div>");
     }
+    public function front_cuerpo_carrito($prods){
+        echo (
+            "<div id='cuerpo' style='width:70%; float:left;'>
+			<fieldset>
+			<legend>LISTADO: </legend>"
+        );
+        $this->tablaCR($prods);
+        echo (
+            "</fieldset>
+                </div>");
+    }
     public function front_cuerpo(){
         echo (
             "<div id='cuerpo' style='width:70%; float:left;'>
@@ -251,6 +273,7 @@ class Vista
         echo ("</fieldset>
 			</div>");
     }
+    
     public function front_menu_filtros($res){
         echo (
             "<div>
@@ -274,6 +297,7 @@ class Vista
     public function mostrar_filtros($CRUD){
         echo ("<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n");
         $m = new Modelo();
+        $pdao = new ProductoDAO();
         $results=$m->consultar("productos");
         if ($CRUD == "nuevo")unset($results[0]);
         foreach ($results as $row) {
@@ -281,7 +305,7 @@ class Vista
                 echo "<label for='$row[Field]'>" . LANGS[$this->lang][$row['Field']]."</label>";
                 if($row['Field']=="prov"){
                     echo "<select name='$row[Field]' id='$row[Field]'>";
-                    $proovedores=$m->getProovedores("productos");
+                    $proovedores=$pdao->getProovedores("productos");
                     for($i=0;$i<count($proovedores);$i++){
                         echo "<option value='".$proovedores[$i][$row['Field']]."'>".$proovedores[$i][$row['Field']]."</option>";
                     }

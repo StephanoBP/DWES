@@ -11,6 +11,9 @@
 		$_SESSION['lang']=$_POST['lang'];
 		$v->setLang($_POST['lang']);
 	}//boton de cambiar el idioma en el panel
+	if(isset($_POST['cods'])){
+        $_SESSION['carrito']=$_POST['cods'];
+    }
 ?>
 <?php
 	$v->cabecera();

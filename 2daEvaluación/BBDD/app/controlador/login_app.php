@@ -9,7 +9,6 @@
         $_SESSION=array();
         session_destroy();
     }
-
     if(!isset($_SESSION['lang'])){
         //$_SESSION['lang']=array_key_first(LANGS);
         $_SESSION['lang']=array_keys(LANGS)[0];
@@ -43,7 +42,7 @@
                     echo("<h2>Nombre o contraseña incorrectos</h2>");
                     //lang no data
                 }
-            }   
+            }
             $con->close();
         }catch(PDOException $e){
             print("Error ".$e->getMessage()."<br/>");
@@ -55,7 +54,7 @@
             $_SESSION['lang']=array_keys(LANGS)[0];
         }
     }
-?> 
+?>
 <?php
     //$v->form_login();
     $v=new Vista($_SESSION['lang']);
