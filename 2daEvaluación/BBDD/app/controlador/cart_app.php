@@ -20,6 +20,11 @@
 ?>
 <?php
 	$v->cabecera();
-    $prods = $m->getProds("productos",$_SESSION['carrito']);
-	$v->front_cuerpo_carrito($prods);
+    if (isset($_SESSION['carrito'])){
+        $prods = $m->getProds("productos",$_SESSION['carrito']);
+        $pvp = $m->getPvp("productos",$_SESSION['carrito']);
+	    $v->front_cuerpo_carrito($prods,$pvp);
+    }else{
+        $v->front_cuerpo_carrito("","");
+    }
 ?>

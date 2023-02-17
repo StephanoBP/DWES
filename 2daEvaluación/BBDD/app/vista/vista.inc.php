@@ -37,13 +37,17 @@ class Vista
                 $s .= "</tr>\n";
 
             }
+            $s . "</table>\n";
+            echo $s;
         }else{
-            echo "<h1>No se ha encontrado nada con los filtros específicos</h1>" . BR;
+            if(isset($_POST['btFiltros'])){
+                echo "<h1>No se ha encontrado nada con los filtros específicos</h1>" . BR;
             $pdao = new ProductoDAO();
             $this->tablaCR($pdao->getAll());
+            }else{
+                echo "<h1>No tienes guardado nada en el carrito todavía</h1>";
+            }
         }
-        $s . "</table>\n";
-        echo $s;
     }
     public function opcionesTabla($exist,$n){
         $res="";
@@ -59,7 +63,7 @@ class Vista
             }
         }else{
             for($i=0;$i<=$exist;$i++){
-                if(isset($_SESSION['carrito'])){
+                if(isset($_SESSION['carrito'])){ 
                     if($i==$_SESSION['carrito'][$n])$res.= "<option value='$i' selected>$i</option>";
                     else $res.= "<option value='$i'>$i</option>";
                 }else{
@@ -222,14 +226,18 @@ class Vista
             "</fieldset>
                 </div>");
     }
-    public function front_cuerpo_carrito($prods){
+    public function front_cuerpo_carrito($prods,$pvp){
         echo (
             "<div id='cuerpo' style='width:70%; float:left;'>
 			<fieldset>
 			<legend>LISTADO: </legend>"
         );
         $this->tablaCR($prods);
-        echo (
+        if(isset($pvp))echo (
+            "   <h4>Total de la compra: $pvp €</h4>
+            </fieldset>
+                </div>");
+        else echo (
             "</fieldset>
                 </div>");
     }

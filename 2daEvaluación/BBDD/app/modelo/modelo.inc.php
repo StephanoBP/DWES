@@ -69,4 +69,32 @@ class Modelo{
             exit;
         }
     }
+    public function getPvp($t,$a){
+        try {
+            $dbh = new Conn();
+            $bd = $dbh->getConn();
+            $q = "SELECT cod,pvp FROM $t WHERE ";
+            foreach($a as $k=>$v){
+                if($v>0){
+                    $q.=NOM[0]."=$k OR ";
+                }
+            }
+            
+            $q=substr($q,0,strlen($q)-3);
+            //$q="SELECT * FROM productos where cod<=$a[0] AND nom_prod LIKE'$a[1]%' AND pvp<=$a[2] AND prov LIKE '$a[3]%' AND existencias<=$a[4]";
+            //echo "<h1>$q</h1>";
+            $prods = $bd->prepare($q);
+            $prods->execute();
+            $result = $prods->fetchAll(PDO::FETCH_ASSOC);
+            $dbh->close();
+            $pvp=0;
+            foreach($result as $k=>$v){
+                $pvp.=$a[$k]
+            }
+            //return $result[0]['SUM(pvp)'];
+        } catch (PDOException $e) {
+            print("Error get<br/>" . $e->getMessage());
+            exit;
+        }
+    }
 }
