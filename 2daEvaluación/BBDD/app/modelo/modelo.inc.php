@@ -89,9 +89,11 @@ class Modelo{
             $dbh->close();
             $pvp=0;
             foreach($result as $k=>$v){
-                $pvp.=$a[$k]
+                $pvp=$pvp +($v['pvp'] * $a[$v['cod']]);
+                
             }
-            //return $result[0]['SUM(pvp)'];
+            return $pvp;
+            
         } catch (PDOException $e) {
             print("Error get<br/>" . $e->getMessage());
             exit;
