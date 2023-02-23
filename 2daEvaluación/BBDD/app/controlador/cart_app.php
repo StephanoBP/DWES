@@ -15,14 +15,16 @@
 		$v->setLang($_POST['lang']);
 	}//boton de cambiar el idioma en el panel
     if(isset($_POST['cods'])){
-        foreach($_POST['cods'] as $k=>$va){
-            if($va!=0)$_SESSION['carrito']=$_POST['cods'];
+        $_SESSION['carrito']=$_POST['cods'];
+        foreach($_SESSION['carrito'] as $k=>$va){
+            if($va==0)unset($_SESSION['carrito'][$k]);
         }
+    }else{
     }
 ?>
 <?php
 	$v->cabecera();
-    if (isset($_SESSION['carrito'])){
+    if (isset($_SESSION['carrito'])&&!empty($_SESSION['carrito'])){
         $prods = $m->getProds("productos",$_SESSION['carrito']);
         $pvp = $m->getPvp("productos",$_SESSION['carrito']);
 	    $v->front_cuerpo_carrito($prods,$pvp);

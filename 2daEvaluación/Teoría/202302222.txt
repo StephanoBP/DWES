@@ -1,0 +1,20 @@
+1.-SOAP (Simple Object Access Protocol) es un protocolo de mensajería estructurado para intercambiar información entre 
+aplicaciones distribuidas en diferentes plataformas, como por ejemplo sistemas Windows, Unix y orientados a objetos. Es 
+un protocolo basado en XML que se utiliza para transmitir mensajes entre sistemas distribuidos.
+
+2.-REST (Representational State Transfer) es uno de los principales estilos arquitectónicos que se pueden utilizar para 
+desarrollar aplicaciones web. Está diseñado para permitir a los clientes acceder y manipular recursos en una base de 
+recursos distribuidos. Los servicios RESTful utilizan el protocolo HTTP para realizar solicitudes y recibir respuestas 
+en formato JSON o XML.
+
+3.- En general, el uso de REST es más popular que el uso de SOAP debido a su simplicidad y escalabilidad. 
+Está ampliamente extendido en toda la web, desde páginas personales hasta grandes servicios, lo que le ha permitido 
+adquirir el respaldo de la mayoría de los desarrolladores. Además, es mucho más fácil implementarlo en comparación con 
+SOAP, donde hay una necesidad urgente de documentar los interfaces Web.
+
+Estos son los principales usos de REST
+
+Realizar peticiones HTTP a servidores web
+Proporcionar APIs (Interfaces de Programación de Aplicaciones) usadas principalmente para desarrollo móvil y web.
+Enviar y recibir datos entre cliente y servidor.
+Integración de aplicaciones API (sistemas de terceros).

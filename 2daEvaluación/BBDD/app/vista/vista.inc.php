@@ -1,6 +1,5 @@
 <?php
     require_once("../modelo/const.inc.php");
-    require_once("../modelo/modelo.inc.php");
     define("BR","<br/>\n");
 class Vista
 {
@@ -50,6 +49,7 @@ class Vista
         }
     }
     public function opcionesTabla($exist,$n){
+        error_reporting(0);
         $res="";
         if($exist>5){
             for($i=0;$i<=5;$i++){
@@ -72,6 +72,7 @@ class Vista
                 }
             }
         }
+        error_reporting(E_ALL);
         return $res;
     }
     public function tabla($t)
@@ -195,9 +196,9 @@ class Vista
         }
 
     }
-    public function front_menu($res){
+    public function front_menu($res,$f){
         $this->front_menu_productos();
-        $this->front_menu_filtros($res);
+        $this->front_menu_filtros($res,$f);
     }
     public function front_cuerpo_filtrado(){
         echo (
@@ -282,12 +283,12 @@ class Vista
 			</div>");
     }
     
-    public function front_menu_filtros($res){
+    public function front_menu_filtros($res,$f){
         echo (
             "<div>
 			<fieldset>
 				<legend>Filtros: </legend>");
-        if(isset($res))$this->mostrar_filtros($res);
+        if(isset($res))$this->mostrar_filtros($res,$f);
         echo ("	
                 </fieldset>
                 </div>
@@ -302,11 +303,9 @@ class Vista
             }
         }
     }
-    public function mostrar_filtros($CRUD){
+    public function mostrar_filtros($CRUD,$results){
         echo ("<form action='" . $_SERVER['PHP_SELF'] . "' method='POST'>\n");
-        $m = new Modelo();
         $pdao = new ProductoDAO();
-        $results=$m->consultar("productos");
         if ($CRUD == "nuevo")unset($results[0]);
         foreach ($results as $row) {
             if ($row['Field'] != "imagen") {
