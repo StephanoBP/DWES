@@ -69,6 +69,38 @@ class Modelo{
             exit;
         }
     }
+    public function factura($t){
+        try {
+            $dbh = new Conn();
+            $bd = $dbh->getConn();
+            $numf = $this->getMaxFac() + 1;
+            $q = "INSERT INTO $t (numf,fecha,dni) VALUES ($numf,CURDATE(),'$_SESSION[user]')";
+            $prods = $bd->prepare($q);
+            $prods->execute();
+            $prods->fetchAll(PDO::FETCH_ASSOC);
+            $dbh->close();
+        } catch (PDOException $e) {
+            print("Error get<br/>" . $e->getMessage());
+            exit;
+        }
+    }
+    public function getMaxFac(){
+        try {
+            $dbh = new Conn();
+            $bd = $dbh->getConn();
+            $q = "SELECT MAX(numf) FROM facturas;";
+            $prods = $bd->prepare($q);
+            $prods->execute();
+            $result = $prods->fetchAll(PDO::FETCH_ASSOC);
+            $dbh->close();
+            if(!empty($result[0]["MAX(numf)"])) return $result[0]["MAX(numf)"];
+            else return 0;
+
+        } catch (PDOException $e) {
+            print("Error get<br/>" . $e->getMessage());
+            exit;
+        }
+    }
     public function getPvp($t,$a){
         try {
             $dbh = new Conn();

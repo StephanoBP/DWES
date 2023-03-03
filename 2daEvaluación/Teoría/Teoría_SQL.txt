@@ -1,0 +1,47 @@
+Referenciado a las tablas:
+-para añadir nuevas columnas:
+ALTER TABLE table_name
+ADD column_name datatype;
+
+-para borrar una columna:
+ALTER TABLE table_name
+DROP COLUMN column_name;
+
+-para modificar una columna:
+1.-
+ALTER TABLE table_name
+ALTER COLUMN column_name datatype;
+
+2.-
+ALTER TABLE table_name
+MODIFY COLUMN column_name datatype;
+
+3.-
+ALTER TABLE table_name
+MODIFY column_name datatype;
+
+-para renombrar una columna:
+ALTER TABLE table_name
+RENAME COLUMN old_name to new_name;
+
+-para insertar valores nuevos en la tabla
+1.-
+INSERT INTO table_name (colunm_table1,colunm_table2,colunm_table3) VALUES (value1,value2,value3)
+
+2.-
+INSERT INTO table_name VALUES (1, 'ZPQWE', 100.00 , J04131348 , 2) 
+
+
+-para borrar valores en la tabla
+1.-
+DELETE FROM table_name
+
+2.-
+DELETE FROM productos
+    WHERE cod = 11
+
+-para modificar valores en la tabla 
+1.-
+UPDATE productos
+SET precio = 250
+WHERE id = 1;

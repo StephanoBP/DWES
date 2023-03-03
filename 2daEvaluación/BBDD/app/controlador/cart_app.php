@@ -2,7 +2,7 @@
 <?php
     session_start();
 	if(!isset($_SESSION['user'])){
-		header("location: login.php");
+		header("location: login_app.php");
 	}
     require_once("../vista/vista.inc.php");
     require_once("../modelo/productoDAO.inc.php");
@@ -24,10 +24,14 @@
 ?>
 <?php
 	$v->cabecera();
-    if (isset($_SESSION['carrito'])&&!empty($_SESSION['carrito'])){
+    
+    if (!empty($_SESSION['carrito'])){
         $prods = $m->getProds("productos",$_SESSION['carrito']);
         $pvp = $m->getPvp("productos",$_SESSION['carrito']);
-	    $v->front_cuerpo_carrito($prods,$pvp);
+        if(isset($_POST['comprar'])){
+            $m->factura("facturas");
+            $v->front_cuerpo_carrito("factura","");
+        }else $v->front_cuerpo_carrito($prods,$pvp);
     }else{
         $v->front_cuerpo_carrito("","");
     }

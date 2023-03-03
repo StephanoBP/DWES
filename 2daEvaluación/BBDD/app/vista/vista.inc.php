@@ -1,5 +1,5 @@
 <?php
-    require_once("../modelo/const.inc.php");
+    require_once("const.inc.php");
     define("BR","<br/>\n");
 class Vista
 {
@@ -14,6 +14,9 @@ class Vista
 
     public function tablaCR($t)
     {
+        if($t=="factura"){
+            return "";
+        }
         $s = "<table border=1>" . BR;
         if(isset($t[0])){
             //var_dump($t);
@@ -36,15 +39,15 @@ class Vista
                 $s .= "</tr>\n";
 
             }
-            $s . "</table>\n";
-            echo $s;
+            $s .= "</table>\n";
+            return $s;
         }else{
             if(isset($_POST['btFiltros'])){
-                echo "<h1>No se ha encontrado nada con los filtros específicos</h1>" . BR;
+                $s= "<h1>No se ha encontrado nada con los filtros específicos</h1>" . BR;
             $pdao = new ProductoDAO();
-            $this->tablaCR($pdao->getAll());
+            return $s . $this->tablaCR($pdao->getAll());
             }else{
-                echo "<h1>No tienes guardado nada en el carrito todavía</h1>";
+                return "<h1>No tienes guardado nada en el carrito todavía</h1>";
             }
         }
     }
@@ -208,7 +211,7 @@ class Vista
         );
         $pdao = new productoDAO();
         $filtros = $this->crear_array_Filtros();
-        $this->tablaCR($pdao->getFiltered(explode(",",$filtros)));
+        echo $this->tablaCR($pdao->getFiltered(explode(",",$filtros)));
         echo (
             "</fieldset>
                 </div>");
@@ -222,7 +225,7 @@ class Vista
         $pdao = new productoDAO();
         $filtros = $this->crear_array_Filtros();
         $pdao->getInsert(explode(",",$filtros));
-        $this->tablaCR($pdao->getAll());
+        echo $this->tablaCR($pdao->getAll());
         echo (
             "</fieldset>
                 </div>");
@@ -233,9 +236,14 @@ class Vista
 			<fieldset>
 			<legend>LISTADO: </legend>"
         );
-        $this->tablaCR($prods);
-        if(isset($pvp))echo (
-            "   <h4>Total de la compra: $pvp €</h4>
+        echo $this->tablaCR($prods);
+        if(!empty($pvp)&&!empty($prods)) echo (
+            "  <h4>Total de la compra: $pvp €</h4>
+                <input type='submit' name='comprar' value='COMPRAR'/>
+            </fieldset>
+                </div>");
+        else if($prods=="factura") echo (
+            "   <h1>Gracias por la compra, su número de factura es: $pvp </h1>
             </fieldset>
                 </div>");
         else echo (
@@ -249,7 +257,7 @@ class Vista
 			<legend>LISTADO: </legend>"
         );
         $pdao = new productoDAO();
-        $this->tablaCR($pdao->getAll());
+        echo $this->tablaCR($pdao->getAll());
         echo (
             "</fieldset>
                 </div>");
@@ -288,7 +296,7 @@ class Vista
             "<div>
 			<fieldset>
 				<legend>Filtros: </legend>");
-        if(isset($res))$this->mostrar_filtros($res,$f);
+        if(isset($res)&&!empty($f))$this->mostrar_filtros($res,$f);
         echo ("	
                 </fieldset>
                 </div>

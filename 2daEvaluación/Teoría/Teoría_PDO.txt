@@ -1,0 +1,22 @@
+CONEXIÓN PDO y USOS
+
+Primero tenemos que hacer la conexión usando el nombre del host (con el mysql:host) después el nombre de la base de datos (dbname=) 
+el usuario y la contraseña Ej:
+
+$conexion = new PDO('mysql:host=nombre_host;dbname=nombre_base_datos', 'nombre_usuario', 'contraseña');
+
+Después configuramos los atributos de la conexión:
+
+PDO::ERRMODE_SILENT: No se emitirán errores ni excepciones, lo que puede hacer que sea difícil detectar problemas.
+PDO::ERRMODE_WARNING: Se emitirán advertencias, pero la ejecución del código continuará.
+PDO::ERRMODE_EXCEPTION: Se lanzarán excepciones, lo que interrumpe la ejecución del código.
+
+$conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+EL :: 
+El operador :: en PHP se utiliza para acceder a métodos y propiedades estáticas de una clase, es decir, aquellas que pertenecen a la clase en sí misma y no a una instancia particular de la clase.
+
+En el caso de PDO, :: se utiliza para acceder a sus métodos y propiedades estáticas, como PDO::ATTR_ERRMODE y PDO::ERRMODE_EXCEPTION.
+
+Se hace dentro de un try catch(PDOException $e)

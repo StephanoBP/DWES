@@ -3,7 +3,7 @@
     require_once("../modelo/conn.inc.php");
     require_once("../vista/vista.inc.php");
     require_once("../modelo/modelo.inc.php");
-    require_once("../modelo/const.inc.php");
+    require_once("../vista/const.inc.php");
     session_start();
     if(isset($_SESSION['user'])){
         $_SESSION=array();
